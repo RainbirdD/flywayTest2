@@ -12,19 +12,13 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class BooksController {
-
     private final BooksRepo booksRepo;
 
-//    BooksController(BooksRepo booksRepo){
-//        this.booksRepo=booksRepo;
-//    }
 
     @GetMapping("/books")
     List<book> all(){
         return (List<book>) booksRepo.findAll();
     }
-
-
 
 
 }
