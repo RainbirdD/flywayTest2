@@ -17,7 +17,7 @@ public class BooksController {
         this.booksRepo=booksRepo;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/books")
     List<book> all(){
         return (List<book>) booksRepo.findAll();
     }
