@@ -1,0 +1,1 @@
+CREATE TABLE book (id INT, author VARCHAR(30), title VARCHAR(30));
