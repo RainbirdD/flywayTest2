@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
 import org.springframework.stereotype.Component;
-import test1.flywayTesting.tables.book;
-import test1.flywayTesting.tables.bookDTO;
+import test1.flywayTesting.entities.Book;
+import test1.flywayTesting.entities.BookDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-29T12:07:03+0300",
+    date = "2021-09-29T15:13:33+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
 )
 @Component
 public class bookMapperImpl implements bookMapper {
 
     @Override
-    public book dtoToEntity(bookDTO dto) {
+    public Book dtoToEntity(BookDTO dto) {
         if ( dto == null ) {
             return null;
         }
 
-        book book = new book();
+        Book book = new Book();
 
         book.setAuthor( dto.getAuthor() );
         book.setTitle( dto.getTitle() );
@@ -30,12 +30,12 @@ public class bookMapperImpl implements bookMapper {
     }
 
     @Override
-    public bookDTO entityToDto(book entity) {
+    public BookDTO entityToDto(Book entity) {
         if ( entity == null ) {
             return null;
         }
 
-        bookDTO bookDTO = new bookDTO();
+        BookDTO bookDTO = new BookDTO();
 
         bookDTO.setAuthor( entity.getAuthor() );
         bookDTO.setTitle( entity.getTitle() );
@@ -44,13 +44,13 @@ public class bookMapperImpl implements bookMapper {
     }
 
     @Override
-    public List<bookDTO> entityListToDtoList(List<book> entityList) {
+    public List<BookDTO> entityListToDtoList(List<Book> entityList) {
         if ( entityList == null ) {
             return null;
         }
 
-        List<bookDTO> list = new ArrayList<bookDTO>( entityList.size() );
-        for ( book book : entityList ) {
+        List<BookDTO> list = new ArrayList<BookDTO>( entityList.size() );
+        for ( Book book : entityList ) {
             list.add( entityToDto( book ) );
         }
 
@@ -58,13 +58,13 @@ public class bookMapperImpl implements bookMapper {
     }
 
     @Override
-    public List<book> dtoListToEntityList(List<bookDTO> dtoList) {
+    public List<Book> dtoListToEntityList(List<BookDTO> dtoList) {
         if ( dtoList == null ) {
             return null;
         }
 
-        List<book> list = new ArrayList<book>( dtoList.size() );
-        for ( bookDTO bookDTO : dtoList ) {
+        List<Book> list = new ArrayList<Book>( dtoList.size() );
+        for ( BookDTO bookDTO : dtoList ) {
             list.add( dtoToEntity( bookDTO ) );
         }
 

@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import test1.flywayTesting.mappers.bookMapper;
 import test1.flywayTesting.repos.BooksRepo;
-import test1.flywayTesting.tables.book;
-import test1.flywayTesting.tables.bookDTO;
+import test1.flywayTesting.entities.Book;
+import test1.flywayTesting.entities.BookDTO;
 
 import java.util.List;
 
@@ -19,10 +19,18 @@ public class BookService {
 
 
 
-    public List<bookDTO> all() {
-        List<book> booksEntityList = (List<book>) booksRepo.findAll();
-        List<bookDTO> bookDTOList = mapper.entityListToDtoList(booksEntityList);
+    public List<BookDTO> all() {
+        List<Book> booksEntityList = (List<Book>) booksRepo.findAll();
+        List<BookDTO> bookDTOList = mapper.entityListToDtoList(booksEntityList);
         return bookDTOList;
-//        return (List<book>) booksRepo.findAll();
+//        return (List<Book>) booksRepo.findAll();
     }
+
+
+    public Book addBook(Book book) {
+        return booksRepo.save(book);
+    }
+
+
+
 }

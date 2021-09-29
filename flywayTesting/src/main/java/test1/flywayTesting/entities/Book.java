@@ -1,4 +1,4 @@
-package test1.flywayTesting.tables;
+package test1.flywayTesting.entities;
 
 
 import lombok.Getter;
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class book {
+public class Book {
 
     @Id
     private int id;

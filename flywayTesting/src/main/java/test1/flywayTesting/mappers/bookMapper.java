@@ -2,22 +2,21 @@ package test1.flywayTesting.mappers;
 
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import test1.flywayTesting.tables.book;
-import test1.flywayTesting.tables.bookDTO;
+import test1.flywayTesting.entities.Book;
+import test1.flywayTesting.entities.BookDTO;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface bookMapper {
 
-    book dtoToEntity(bookDTO dto);
+    Book dtoToEntity(BookDTO dto);
 
 
-    bookDTO entityToDto(book entity);
+    BookDTO entityToDto(Book entity);
 
-    List<bookDTO> entityListToDtoList(List<book> entityList);
+    List<BookDTO> entityListToDtoList(List<Book> entityList);
 
-    List<book> dtoListToEntityList(List<bookDTO> dtoList);
+    List<Book> dtoListToEntityList(List<BookDTO> dtoList);
 
 }
