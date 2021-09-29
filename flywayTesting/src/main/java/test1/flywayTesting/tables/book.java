@@ -10,9 +10,10 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
-@RequiredArgsConstructor
 @Setter
+@RequiredArgsConstructor
 public class book {
+
     @Id
     private int id;
     private String author;

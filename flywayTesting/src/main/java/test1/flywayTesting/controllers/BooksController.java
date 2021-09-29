@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import test1.flywayTesting.repos.BooksRepo;
 import test1.flywayTesting.services.BookService;
 import test1.flywayTesting.tables.book;
+import test1.flywayTesting.tables.bookDTO;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ private final BookService bookService;
 //    }
 
     @GetMapping("books")
-    public List<book> getBooks(){
+    public List<bookDTO> getBooks(){
         return bookService.all();
     }
 
