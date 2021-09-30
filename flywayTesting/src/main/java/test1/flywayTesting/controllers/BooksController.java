@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import test1.flywayTesting.entities.Book;
 import test1.flywayTesting.entities.BookDTO;
+import test1.flywayTesting.repos.BooksRepo;
 import test1.flywayTesting.services.BookService;
 
 import javax.validation.Valid;
@@ -19,19 +20,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BooksController {
 
+    private final BooksRepo booksRepo;
     private final BookService bookService;
 
-//    @GetMapping("/books")
-//    List<Book> all(){
-//        return (List<Book>) booksRepo.findAll();
-//    }
+    @GetMapping("/booksJson")
+    List<Book> all(){
+        return (List<Book>) booksRepo.findAll();
+    }
 
     @GetMapping("books")
     public List<BookDTO> getBooks() {
         return bookService.all();
     }
 
-    @PostMapping("books/add")
+    @PostMapping("books")
     public ResponseEntity<BookDTO> createBook(@Valid @RequestBody BookDTO bookDTO) {
 
         Book book = new Book();

@@ -23,7 +23,6 @@ public class BookService {
         List<Book> booksEntityList = (List<Book>) booksRepo.findAll();
         List<BookDTO> bookDTOList = mapper.entityListToDtoList(booksEntityList);
         return bookDTOList;
-//        return (List<Book>) booksRepo.findAll();
     }
 
 

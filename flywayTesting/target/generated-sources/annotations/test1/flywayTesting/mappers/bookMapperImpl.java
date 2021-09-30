@@ -9,7 +9,7 @@ import test1.flywayTesting.entities.BookDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-29T15:13:33+0300",
+    date = "2021-09-30T13:44:29+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
 )
 @Component
