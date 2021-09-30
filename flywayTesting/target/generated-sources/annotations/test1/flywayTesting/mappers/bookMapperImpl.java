@@ -9,11 +9,11 @@ import test1.flywayTesting.entities.BookDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-09-30T13:44:29+0300",
+    date = "2021-09-30T16:22:14+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
 )
 @Component
-public class bookMapperImpl implements bookMapper {
+public class BookMapperImpl implements BookMapper {
 
     @Override
     public Book dtoToEntity(BookDTO dto) {

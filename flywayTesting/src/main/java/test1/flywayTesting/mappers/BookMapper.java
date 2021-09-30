@@ -8,7 +8,7 @@ import test1.flywayTesting.entities.BookDTO;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface bookMapper {
+public interface BookMapper {
 
     Book dtoToEntity(BookDTO dto);
 

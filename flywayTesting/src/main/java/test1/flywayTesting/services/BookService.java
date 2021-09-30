@@ -3,7 +3,7 @@ package test1.flywayTesting.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import test1.flywayTesting.mappers.bookMapper;
+import test1.flywayTesting.mappers.BookMapper;
 import test1.flywayTesting.repos.BooksRepo;
 import test1.flywayTesting.entities.Book;
 import test1.flywayTesting.entities.BookDTO;
@@ -15,7 +15,7 @@ import java.util.List;
 public class BookService {
 
     private final BooksRepo booksRepo;
-    private final bookMapper mapper;
+    private final BookMapper mapper;
 
 
 
