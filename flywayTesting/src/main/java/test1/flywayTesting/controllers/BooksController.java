@@ -35,7 +35,7 @@ public class BooksController {
     }
 
     @PostMapping("books")
-    public ResponseEntity<BookDTO> createBook(@Valid @RequestBody BookDTO bookDTO) {
+    public ResponseEntity<BookDTO> createBook(@Valid @RequestBody BookDTO bookDTO) throws Exception {
 
         Book book = new Book();
         book.setAuthor(bookDTO.getAuthor());
@@ -44,27 +44,25 @@ public class BooksController {
 
         Optional<Book> optRecord = booksRepo.findBook(book);
         if(optRecord.isPresent()){
-            System.out.println("die die die");
-
+            throw new Exception("Book with the given title and author exists");
 
         }else{
+            Book savedBook = bookService.addBook(book);
+
+            BookDTO bookResponse = new BookDTO();
+            bookResponse.setAuthor(savedBook.getAuthor());
+            bookResponse.setTitle(savedBook.getTitle());
 
 
 
-            System.out.println("kekw");
+            return new ResponseEntity<BookDTO>(bookResponse, HttpStatus.CREATED);
+
+
         }
 
 
 
-        Book savedBook = bookService.addBook(book);
 
-        BookDTO bookResponse = new BookDTO();
-        bookResponse.setAuthor(savedBook.getAuthor());
-        bookResponse.setTitle(savedBook.getTitle());
-
-
-
-        return new ResponseEntity<BookDTO>(bookResponse, HttpStatus.CREATED);
     }
 
 
