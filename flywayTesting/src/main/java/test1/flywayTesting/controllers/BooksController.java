@@ -15,6 +15,7 @@ import test1.flywayTesting.services.BookService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,11 +41,28 @@ public class BooksController {
         book.setAuthor(bookDTO.getAuthor());
         book.setTitle(bookDTO.getTitle());
 
+
+        Optional<Book> optRecord = booksRepo.findBook(book);
+        if(optRecord.isPresent()){
+            System.out.println("die die die");
+
+
+        }else{
+
+
+
+            System.out.println("kekw");
+        }
+
+
+
         Book savedBook = bookService.addBook(book);
 
         BookDTO bookResponse = new BookDTO();
         bookResponse.setAuthor(savedBook.getAuthor());
         bookResponse.setTitle(savedBook.getTitle());
+
+
 
         return new ResponseEntity<BookDTO>(bookResponse, HttpStatus.CREATED);
     }

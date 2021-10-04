@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -56,15 +57,15 @@ class BooksControllerTest {
     public void addBook() throws Exception {
         BookDTO bookDTO = new BookDTO();
 
-        bookDTO.setAuthor("Normal Author");
-        bookDTO.setTitle("Normal Title");
+        bookDTO.setAuthor("Normal Author1");
+        bookDTO.setTitle("Normal Title1");
 
         ResponseEntity<BookDTO> response = restTemplate.postForEntity("/books", bookDTO, BookDTO.class);
         assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
     }
 
     @Test
-    public void  addWrongBook() throws Exception{
+    public void  addWrongBookTestError() throws Exception{
         BookDTO bookDTO = new BookDTO();
 
         bookDTO.setAuthor("s");
@@ -74,10 +75,24 @@ class BooksControllerTest {
         assertThat(response.getStatusCode(), is(HttpStatus.BAD_REQUEST));
     }
 
+    @Test
+    public void  addExistedBookTestError() throws Exception{
+        BookDTO bookDTO = new BookDTO();
+
+        bookDTO.setAuthor("Default Author");
+        bookDTO.setTitle("Default Book");
+
+        ResponseEntity<BookDTO> response = restTemplate.postForEntity("/books", bookDTO, BookDTO.class);
+        assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
+    }
+
+
+
+
 
 
     @Test
-    public void mockTest() throws Exception{
+    public void mockTestForErrors() throws Exception{
 
 //        ObjectNode book = om.createObjectNode();
         BookDTO book = new BookDTO();
@@ -98,4 +113,9 @@ class BooksControllerTest {
               .andExpect(MockMvcResultMatchers.jsonPath("$.title", Is.is("Title must have > 2 letters")));
 
     }
+
+
+
+
+
 }
