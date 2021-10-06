@@ -1,16 +1,14 @@
 package test1.flywayTesting.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -22,10 +20,8 @@ import test1.flywayTesting.entities.BookDTO;
 import test1.flywayTesting.mappers.BookMapper;
 import test1.flywayTesting.repos.BooksRepo;
 import test1.flywayTesting.services.BookService;
-import org.springframework.http.HttpStatus;
 
-import static groovy.json.JsonOutput.toJson;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -33,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
-class BooksControllerTest123 {
+class BooksControllerTests {
 
     @Autowired
     private BookService bookService;
@@ -88,15 +84,9 @@ class BooksControllerTest123 {
         assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
     }
 
-
-
-
-
-
     @Test
     public void mockTestForErrors() throws Exception{
 
-//        ObjectNode book = om.createObjectNode();
         BookDTO book = new BookDTO();
 
         book.setAuthor("s");

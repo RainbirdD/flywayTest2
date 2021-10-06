@@ -28,32 +28,14 @@ public class BookService {
         return bookDTOList;
     }
 
-
-
-
-
     public boolean isExistByAuthorAndTitle(Book book) {
 
         ExampleMatcher exampleMatcher = ExampleMatcher.matching()
                 .withIgnorePaths("id");
         Example<Book> bookExample = Example.of(book, exampleMatcher);
-        booksRepo.findAll(bookExample).forEach(System.out::println);
 
-        if (booksRepo.findAll(bookExample).isEmpty()){
-            return true;
-        }else return false;
+        return booksRepo.exists(bookExample);
     }
-
-
-
-
-
-
-
-
-
-
-
 
     public ResponseEntity<BookDTO> createBook(BookDTO bookDTO) throws Exception {
 
@@ -61,13 +43,8 @@ public class BookService {
         book.setAuthor(bookDTO.getAuthor());
         book.setTitle(bookDTO.getTitle());
 
-//        Optional<Book> optRecord = booksRepo.findBook(book);
-//        Boolean isExist = booksRepo.existsByAuthorAndTitle(book);
-
-        if(isExistByAuthorAndTitle(book) == false){
+        if(isExistByAuthorAndTitle(book) == true){
             throw new BookAlreadyExistException("The book " + " already exist");
-        //            throw new Exception("Book with the given title and author exists");
-
         }else{
             Book savedBook = booksRepo.save(book);
             BookDTO bookResponse = new BookDTO();

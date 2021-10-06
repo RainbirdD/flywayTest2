@@ -21,7 +21,6 @@ import static org.mockito.Mockito.*;
 
 class BookServiceTest {
 
-
     @InjectMocks
     BookService bookService;
 
@@ -35,46 +34,14 @@ class BookServiceTest {
         bookDTO.setAuthor("NormalAuthor");
         bookDTO.setTitle("NormalTitle");
 
-//        BookDTO bookDTO2 = new BookDTO();
-//        bookDTO2.setAuthor("NormalAuthor");
-//        bookDTO2.setTitle("NormalTitle");
-//
-//        Book book2 = new Book();
-//        book2.setTitle("NormalAuthor");
-//        book2.setAuthor("NormalTitle");
 
 //        Assertions.assertThrows(BookAlreadyExistException.class, () -> {
 //            bookService.createBook(bookDTO);
 //        });
-
-        when(bookService.isExistByAuthorAndTitle(any(Book.class))).thenReturn(true);
+//        when(bookService.isExistByAuthorAndTitle(any(Book.class))).thenReturn(false);
         when(booksRepo.save(any(Book.class))).thenAnswer(i -> i.getArguments()[0]);
         bookService.createBook(bookDTO);
-
-
-
-
-
-
-//        bookService.createBook(bookDTO2);
-
-
-
-
 //        ResponseEntity<BookDTO> bookDTO1 = bookService.createBook(bookDTO);
-//
-//        System.out.println(bookDTO1);
-//        System.out.println(booksRepo.findAll());
-//        Book book = new Book();
-//        book.setTitle("NormalAuthor");
-//        book.setAuthor("NormalTitle");
-
-
-//        System.out.println("Example entity: "+book);
-//        Example<Book> bookExample = Example.of(book, ExampleMatcher.matching().withIgnorePaths("ID"));
-//        Iterable<Book> books = booksRepo.findAll(bookExample);
-
-
 
     }
 }

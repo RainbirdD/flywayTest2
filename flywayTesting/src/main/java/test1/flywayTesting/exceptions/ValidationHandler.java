@@ -1,4 +1,4 @@
-package test1.flywayTesting.controllers;
+package test1.flywayTesting.exceptions;
 
 import java.util.HashMap;
 import java.util.Map;
