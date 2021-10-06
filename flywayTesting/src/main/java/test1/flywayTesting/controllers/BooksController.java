@@ -19,13 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BooksController {
 
-    private final BooksRepo booksRepo;
     private final BookService bookService;
-
-    @GetMapping("/booksJson")
-    List<Book> all(){
-        return (List<Book>) booksRepo.findAll();
-    }
 
     @GetMapping("books")
     public List<BookDTO> getBooks() {
@@ -36,7 +30,6 @@ public class BooksController {
     ResponseEntity<BookDTO> createBooks(@Valid @RequestBody BookDTO bookDTO) throws Exception {
         return bookService.createBook(bookDTO);
     }
-
 
 
 }

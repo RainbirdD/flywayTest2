@@ -19,24 +19,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class BooksControllerDublicateTest {
 
-@Autowired
-MockMvc mvc;
+    @Autowired
+    MockMvc mvc;
 
 
-        @Test
-        public void createBook() throws Exception {
+    @Test
+    public void createBook() throws Exception {
 
-                BookDTO bookDTO = new BookDTO();
-                bookDTO.setAuthor("Yakub Zwiek");
-                bookDTO.setTitle("Klamca");
+        BookDTO bookDTO = new BookDTO();
+        bookDTO.setAuthor("Yakub Zwiek");
+        bookDTO.setTitle("Klamca");
 
-                mvc.perform(
-                                post("/books")
-                                        .contentType(MediaType.APPLICATION_JSON)
-                                        .content(String.valueOf(bookDTO))
-                        )
-                        .andDo(MockMvcResultHandlers.print())
-                        .andExpect(status().isBadRequest());
+        mvc.perform(
+                        post("/books")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(String.valueOf(bookDTO))
+                )
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isBadRequest());
 
-        }
+    }
 }

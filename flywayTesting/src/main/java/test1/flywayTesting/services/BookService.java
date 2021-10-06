@@ -23,7 +23,7 @@ public class BookService {
     private final BookMapper mapper;
 
     public List<BookDTO> all() {
-        List<Book> booksEntityList = (List<Book>) booksRepo.findAll();
+        List<Book> booksEntityList = booksRepo.findAll();
         List<BookDTO> bookDTOList = mapper.entityListToDtoList(booksEntityList);
         return bookDTOList;
     }
@@ -43,15 +43,15 @@ public class BookService {
         book.setAuthor(bookDTO.getAuthor());
         book.setTitle(bookDTO.getTitle());
 
-        if(isExistByAuthorAndTitle(book) == true){
+        if (isExistByAuthorAndTitle(book) == true) {
             throw new BookAlreadyExistException("The book " + " already exist");
-        }else{
+        } else {
             Book savedBook = booksRepo.save(book);
             BookDTO bookResponse = new BookDTO();
             bookResponse.setAuthor(savedBook.getAuthor());
             bookResponse.setTitle(savedBook.getTitle());
 
-            return new ResponseEntity<BookDTO>(bookResponse, HttpStatus.CREATED);
+            return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
         }
     }
 

@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 class BooksControllerTests {
 
@@ -48,7 +48,7 @@ class BooksControllerTests {
     ObjectMapper om = new ObjectMapper();
 
     @Autowired
-   private MockMvc mvc;
+    private MockMvc mvc;
 
 
     @Test
@@ -63,7 +63,7 @@ class BooksControllerTests {
     }
 
     @Test
-    public void  addWrongBookTestError() throws Exception{
+    public void addWrongBookTestError() throws Exception {
         BookDTO bookDTO = new BookDTO();
 
         bookDTO.setAuthor("s");
@@ -74,7 +74,7 @@ class BooksControllerTests {
     }
 
     @Test
-    public void  addExistedBookTestError() throws Exception{
+    public void addExistedBookTestError() throws Exception {
         BookDTO bookDTO = new BookDTO();
 
         bookDTO.setAuthor("Default Author");
@@ -85,7 +85,7 @@ class BooksControllerTests {
     }
 
     @Test
-    public void mockTestForErrors() throws Exception{
+    public void mockTestForErrors() throws Exception {
 
         BookDTO book = new BookDTO();
 
@@ -95,14 +95,14 @@ class BooksControllerTests {
         String bookJson = om.writerWithDefaultPrettyPrinter().writeValueAsString(book);
 
         mvc.perform(
-                post("/books")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(bookJson)
+                        post("/books")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(bookJson)
                 )
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isBadRequest())
-              .andExpect(MockMvcResultMatchers.jsonPath("$.author", Is.is("Author must have name")))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.title", Is.is("Title must have > 2 letters")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.author", Is.is("Author must have name")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Is.is("Title must have > 2 letters")));
 
     }
 
