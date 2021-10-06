@@ -11,8 +11,10 @@ import java.util.Optional;
 
 public interface BooksRepo extends JpaRepository<Book, Long> {
 
-    @Query("select qd from Book qd where qd.author = :#{#req. author} and qd.title = :#{#req.title}")
-    Optional<Book> findBook(@Param("req") Book req);
-
-
+    @Query("SELECT CASE  WHEN count(qd)> 0 THEN true ELSE false END from Book qd where qd.author = :#{#req. author} and qd.title = :#{#req.title}")
+    Boolean existsByAuthorAndTitle(@Param("req") Book req);
 }
+
+
+
+//    Optional<Book> findBook(@Param("req") Book req);

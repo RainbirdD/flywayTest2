@@ -2,6 +2,10 @@ package test1.flywayTesting.services;
 
 
 import lombok.RequiredArgsConstructor;
+import lombok.var;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,6 +20,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.exact;
+
 @Service
 @RequiredArgsConstructor
 public class BookService {
@@ -29,15 +35,24 @@ public class BookService {
         return bookDTOList;
     }
 
+
+
+
+
+
+
+
     public ResponseEntity<BookDTO> createBook(BookDTO bookDTO) throws Exception {
 
         Book book = new Book();
         book.setAuthor(bookDTO.getAuthor());
         book.setTitle(bookDTO.getTitle());
 
-        Optional<Book> optRecord = booksRepo.findBook(book);
-        if(optRecord.isPresent()){
-            throw new BookAlreadyExistException("The book" + optRecord.get() + "already exist");
+//        Optional<Book> optRecord = booksRepo.findBook(book);
+        Boolean isExist = booksRepo.existsByAuthorAndTitle(book);
+
+        if(isExist){
+            throw new BookAlreadyExistException("The book " + " already exist");
         //            throw new Exception("Book with the given title and author exists");
 
         }else{
@@ -45,7 +60,10 @@ public class BookService {
             BookDTO bookResponse = new BookDTO();
             bookResponse.setAuthor(savedBook.getAuthor());
             bookResponse.setTitle(savedBook.getTitle());
+
             return new ResponseEntity<BookDTO>(bookResponse, HttpStatus.CREATED);
         }
     }
+
+
 }
