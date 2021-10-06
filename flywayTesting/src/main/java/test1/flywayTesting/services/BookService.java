@@ -4,8 +4,6 @@ package test1.flywayTesting.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import test1.flywayTesting.exceptions.BookAlreadyExistException;
 import test1.flywayTesting.mappers.BookMapper;
@@ -37,21 +35,19 @@ public class BookService {
         return booksRepo.exists(bookExample);
     }
 
-    public ResponseEntity<BookDTO> createBook(BookDTO bookDTO) throws Exception {
+    public void createBook(BookDTO bookDTO) throws Exception {
 
         Book book = new Book();
         book.setAuthor(bookDTO.getAuthor());
         book.setTitle(bookDTO.getTitle());
 
-        if (isExistByAuthorAndTitle(book) == true) {
+        if (isExistByAuthorAndTitle(book)) {
             throw new BookAlreadyExistException("The book " + " already exist");
         } else {
             Book savedBook = booksRepo.save(book);
             BookDTO bookResponse = new BookDTO();
             bookResponse.setAuthor(savedBook.getAuthor());
             bookResponse.setTitle(savedBook.getTitle());
-
-            return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
         }
     }
 
